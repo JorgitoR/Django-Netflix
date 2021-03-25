@@ -47,6 +47,11 @@ class Video(models.Model):
 	def publicado(self):
 		return self.activo
 
+	def get_playlista_ids(self):
+		#self.<foreingkey_obj>_set.all()
+		#return list(self.playlist_set.all().values_list('id', flat=True))playlist_destacado
+		return list(self.playlist_destacado.all().values_list('id', flat=True))
+
 	#def save(self, *args, **kwargs):
 	#	if self.stado == self.PublishStateOptions.PUBLISH and self.tiempo_publicado is None:
 	#		print("Guardado el tiempo de publicado")
@@ -70,7 +75,6 @@ class VideoPublicadoProxy(Video):
 		verbose_name ='Video Publicado'
 		verbose_name_plural = 'Videos Publicados'
 
-
 pre_save.connect(publicado_stado_pre_save, sender=Video)
 pre_save.connect(slugify_pre_save, sender=Video)
 
@@ -79,3 +83,4 @@ pre_save.connect(slugify_pre_save, sender=ProxiTodoLosVideo)
 
 pre_save.connect(publicado_stado_pre_save, sender=VideoPublicadoProxy)
 pre_save.connect(slugify_pre_save, sender=VideoPublicadoProxy)
+

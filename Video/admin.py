@@ -2,12 +2,13 @@ from django.contrib import admin
 from .models import Video, ProxiTodoLosVideo, VideoPublicadoProxy
 
 class VideoAdmin(admin.ModelAdmin):
-	list_display = ['titulo', 'video_id']
+	list_display = ['titulo', 'id', 'stado', 'video_id', 'publicado', 'get_playlista_ids']
 	search_fields = ['titulo']
-	#list_filter=['video_id']
+	list_filter=['stado', 'activo']
+	readonly_fields= ['id', 'publicado', 'tiempo_publicado', 'get_playlista_ids']
 
 	class Meta:
-		model = Video
+		model = ProxiTodoLosVideo
 
 
 admin.site.register(Video, VideoAdmin)
