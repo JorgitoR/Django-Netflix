@@ -1,0 +1,17 @@
+ContentTypes & Generic Foreign Keys
+
+Python manage.py shell
+
+from django.contrib.contenttypes.models import ContentType
+
+ContentType.objects.all()
+
+Para tomar un Models instalado en nuestra aplicacion
+
+id = 1
+categoria_model = ContentType.objects.get(app_label='categorias', model='category')
+categoria_model
+
+categoria = categoria_model.model_class()
+
+categoria.objects.get(id=1)

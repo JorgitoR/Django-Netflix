@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'Video',
-    'playlist'
+    'playlist',
+    'categoria',
+    'tags',
+    'clasificacion'
 ]
 
 MIDDLEWARE = [

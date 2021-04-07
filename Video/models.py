@@ -43,6 +43,9 @@ class Video(models.Model):
 
 	objects = VideoManager()
 
+	def __str__(self):
+		return self.titulo
+
 	@property
 	def publicado(self):
 		return self.activo
