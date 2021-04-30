@@ -14,13 +14,25 @@
 	{{object.titulo}}
 </h1>
 
-{{object.slug}} {{object.get_corto_display}}
+{{object.slug}} Temporadas: <strong>{{object.get_corto_display}}</strong>
+
+
+<p>
+	
+	{{object.temporada}}
+
+</p>
+
+
 
 
 {% for season in object.temporada %}
 
+
 {{season.slug}}
 <li>{{ forloop.counter }} - <a href=''>{{ season.titulo }} </a></li>
+
+
 {% endfor %}
 
 

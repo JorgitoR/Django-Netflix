@@ -2,6 +2,7 @@ from .models import PublishStateOptions
 from django.utils.text import slugify
 from django.utils import timezone
 
+from .utils import obtener_unica_slug
 
 def publicado_stado_pre_save(sender, instance, *args, **kwargs):
 
@@ -20,4 +21,5 @@ def slugify_pre_save(sender, instance, *args, **kwargs):
 	titulo = instance.titulo
 	slug = instance.slug 
 	if slug is None:
-		instance.slug = slugify(titulo)
+		#instance.slug = slugify(titulo)
+		instance.slug = obtener_unica_slug(instance, size=5)

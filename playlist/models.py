@@ -142,7 +142,7 @@ class MovieProxy(PlayList):
 
 class TVShowProxyManager(PlayListaManager):
 	def all(self):
-		return self.get_queryset().filter(padre__isnull=False, type=PlayList.PlaylistTypeChoices.SHOW)
+		return self.get_queryset().filter(padre__isnull=True, type=PlayList.PlaylistTypeChoices.SHOW)
 
 
 class TVShowProxy(PlayList):
@@ -170,15 +170,15 @@ class TVShowProxy(PlayList):
 
 class TVShowTemporadaProxyManager(PlayListaManager):
 	def all(self):
-		return self.get_queryset().filter(padre__isnull=True,  type=PlayList.PlaylistTypeChoices.SEASON)
+		return self.get_queryset().filter(padre__isnull=False,  type=PlayList.PlaylistTypeChoices.SEASON)
 
 class TVShowTemporadaProxy(PlayList):
 
 	objects = TVShowTemporadaProxyManager()
 
 	class Meta:
-		verbose_name = 'Tv Show Temporada'
-		verbose_name_plural = 'Tv Shows Temporadas'
+		verbose_name = 'Temporada'
+		verbose_name_plural = 'Temporadas'
 		proxy = True
 
 

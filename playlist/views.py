@@ -14,7 +14,7 @@ class PeliculaListaView(PlayListMixin, ListView):
 	titulo ="Peliculas"
 
 class PeliculaDetailView(PlayListMixin, DetailView):
-	template_name= 'playlist/Pelicula_detail.thml'
+	template_name = 'playlist/pelicula_detail.html'
 	queryset = MovieProxy.objects.all()
 
 
@@ -37,7 +37,8 @@ class TVShowTemporadaDetailView(PlayListMixin, DetailView):
 		temporada_slug = kwargs.get("seasonSlug")
 		ahora = timezone.now()
 
-		qs = self.get_queryset().filter(padre__slug__iexact=show_slug, slug__iexact= temporada_slug)
+		print(show_slug, temporada_slug)
+		qs = self.get_queryset().filter(padre__slug__iexact=show_slug, slug__iexact=temporada_slug)
 		if not qs.count() == 1:
 			raise Http404
 		return qs.first()
@@ -50,6 +51,10 @@ class PlayListDestacadoView(PlayListMixin, ListView):
 
 
 
+#Nuestro mixin es reemplazado por las funcionalidades agregadas
+#a nuestra clase, es decir, si socreescribimos un queryset, este sera
+#el queryset final, reemplazara el del mixin
+
 class PlaylistDetailView(PlayListMixin, DetailView):
     template_name = 'playlist/playlist_detail.html'
     queryset = PlayList.objects.all()
@@ -58,4 +63,6 @@ class PlaylistDetailView(PlayListMixin, DetailView):
     	request = self.request
     	kwargs = self.kwargs
     	print(request, kwargs)
+    	
     	return self.get_queryset().filter(**kwargs).first()
+    	#return self.get_queryset().first() Con este codigo devuelvo el primer elemento

@@ -48,7 +48,16 @@ class Video(models.Model):
 
 	@property
 	def publicado(self):
-		return self.activo
+		if self.activo is False:
+			return False
+		estado = self.stado
+		if estado != PublishStateOptions.PUBLISH:
+			return False
+		tiempo_publicado = self.tiempo_publicado
+		if tiempo_publicado is None:
+			return False
+		ahora = timezone.now()
+		return tiempo_publicado <= ahora
 
 	def get_playlista_ids(self):
 		#self.<foreingkey_obj>_set.all()

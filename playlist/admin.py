@@ -60,3 +60,4 @@ class PlayListAdmin(admin.ModelAdmin):
 		return PlayList.objects.filter(type=PlayList.PlaylistTypeChoices.PLAYLIST)
 
 admin.site.register(PlayList, PlayListAdmin)
+admin.site.register(PlayListItem)
