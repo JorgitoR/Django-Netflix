@@ -77,6 +77,43 @@ class PlayList(models.Model):
 	def __str__(self):
 		return self.titulo
 
+
+	def get_item_relacionado(self):
+		return self.playlistrelacionado_set.all()
+
+	def get_absolute_url(self):
+		if self.pelicula:
+			return f"/peliculas/{self.slug}/"
+
+		if self.show:
+			return f"/shows/{self.slug}/"
+
+		if self.temporada and self.padre is not None:
+			return f"/shows{self.padre.slug}/temporada/{self.slug}/"
+
+		return f"/playlist/{self.slug}"
+
+	@property 
+	def temporada(self):
+		return self.type == self.PlaylistTypeChoices.SEASON
+
+	@property 
+	def pelicula(self):
+		return self.type == self.PlaylistTypeChoices.MOVIE
+
+	@property 
+	def show(self):
+		return self.type == self.PlaylistTypeChoices.SHOW
+
+	def get_video_id(self):
+		if self.video is None:
+			return None
+		return self.video.get_video_id()
+
+	def get_clips(self):
+
+		return self.playlistitem_set.all().publicado()
+
 	@property
 	def es_publicado(self):
 		return self.activo
@@ -205,6 +242,13 @@ class TVShowTemporadaProxy(PlayList):
 		self.type = PlayList.PlaylistTypeChoices.SEASON
 		super().save(*args, **kwargs)
 
+
+	def get_temporada_trailer(self):
+		"""
+		Obtenemos  el trailer
+		"""
+
+		return self.get_video_id()
 
 	def get_episodios(self):
 		"""

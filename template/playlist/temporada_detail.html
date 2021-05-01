@@ -16,11 +16,15 @@
 
 {{object.slug}} {{object.get_corto_display}}
 
+<h3>Trialer</h3>
+{% include 'video/embed.html' with video_id=object.get_video_id %}
 
 <h3>Episodios</h3>
 {% for playlist_item in object.get_episodios %}
 <h5>Episode {{ playlist_item.order }} {{playlist_item.video}}</h5>
-    
+   
+   {% include 'video/embed.html' with video_id=playlist_item.video.get_video_id %}
+
 {% endfor %}
 
 {% endblock %}

@@ -24,7 +24,15 @@
 </p>
 
 
+<h3>Triler</h3>
+<p style="width: 50%; font-family: arial;">
+	{{object.video.get_descripcion_trailer}}	
+</p>
 
+{% include 'video/embed.html' with video_id=object.get_video_id %}
+
+<br>
+<br>
 
 {% for season in object.temporada %}
 

@@ -27,7 +27,6 @@ urlpatterns = [
     path('shows/<slug:slug>/seasons/', TVShowDetailView.as_view()),
     path('shows/<slug:slug>/', TVShowDetailView.as_view()),
 
-    
-    path('shows/<slug:showSlug>/seasons/<slug:seasonSlug>/', TVShowTemporadaDetailView.as_view()),
 
+    path('shows/<slug:showSlug>/seasons/<slug:seasonSlug>/', TVShowTemporadaDetailView.as_view())
 ]

@@ -9,6 +9,9 @@ from django.utils import timezone
 
 from django.http import Http404
 
+
+from NetFlix.db.models import PublishStateOptions
+
 class PeliculaListaView(PlayListMixin, ListView):
 	queryset = MovieProxy.objects.all()
 	titulo ="Peliculas"
@@ -37,11 +40,33 @@ class TVShowTemporadaDetailView(PlayListMixin, DetailView):
 		temporada_slug = kwargs.get("seasonSlug")
 		ahora = timezone.now()
 
-		print(show_slug, temporada_slug)
-		qs = self.get_queryset().filter(padre__slug__iexact=show_slug, slug__iexact=temporada_slug)
-		if not qs.count() == 1:
+		try:
+			obj = TVShowTemporadaProxy.objects.get(
+
+				stado = PublishStateOptions.PUBLISH,
+				tiempo_publicado__lte = ahora,
+				padre__slug__iexact = show_slug,
+				slug__iexact = temporada_slug
+
+			)
+
+		except TVShowTemporadaProxy.MultipleObjectsReturned:
+			qs = TVShowTemporadaProxy.objects.filter(
+
+				padre__slug__iexact =show_slug,
+				slug__iexact = temporada_slug
+			)
+			obj = qs.first()
+
+		except:
 			raise Http404
-		return qs.first()
+
+		return obj
+		#print(show_slug, temporada_slug)
+		#qs = self.get_queryset().filter(padre__slug__iexact=show_slug, slug__iexact=temporada_slug)
+		#if not qs.count() == 1:
+		#	raise Http404
+		#return qs.first()
 
 
 class PlayListDestacadoView(PlayListMixin, ListView):

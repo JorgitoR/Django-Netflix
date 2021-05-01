@@ -51,6 +51,9 @@ class Video(models.Model):
 			return None
 		return self.video_id
 
+	def get_descripcion_trailer(self):
+		return self.descripcion
+
 	@property
 	def es_publicado(self):
 		if self.activo is False:
