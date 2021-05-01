@@ -46,8 +46,13 @@ class Video(models.Model):
 	def __str__(self):
 		return self.titulo
 
+	def get_video_id(self):
+		if not self.es_publicado:
+			return None
+		return self.video_id
+
 	@property
-	def publicado(self):
+	def es_publicado(self):
 		if self.activo is False:
 			return False
 		estado = self.stado

@@ -45,6 +45,10 @@ class PlaylistModelTestCase(TestCase):
 		self.assertTrue(temporadas.exists())
 		self.assertEqual(temporadas.count(), 3)
 
+
+	def test_temporada_slug_unique(self):
+		self.assertNotEqual(self.temporada_1.slug, self.temporada_3.slug)
+
 	def test_playlist_video(self):
 		self.assertEqual(self.obj_a.video, self.video_a)
 

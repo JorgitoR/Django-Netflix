@@ -11,6 +11,7 @@ from django.utils.text import slugify
 from NetFlix.db.models import PublishStateOptions
 from NetFlix.db.receivers import publicado_stado_pre_save, slugify_pre_save
 
+
 from Video.models import Video
 from categoria.models import categoria
 from tags.models import  TaggedItem
@@ -70,6 +71,8 @@ class PlayList(models.Model):
 
 	objects = PlayListaManager()
 
+	#class Meta:
+		#unique_together =(('titulo', 'slug'))
 
 	def __str__(self):
 		return self.titulo
@@ -119,7 +122,15 @@ class PlayListItem(models.Model):
 	class Meta:
 		ordering = ['order', '-timestamp']
 
+def pr_opcion_limite():
+	return Q(type=PlayList.PlaylistTypeChoices.MOVIE) | Q(type=PlayList.PlaylistTypeChoices.SHOW)
 
+
+class PlayListRelacionado(models.Model):
+	playlist = models.ForeignKey(PlayList, on_delete=models.CASCADE)
+	relacionado = models.ForeignKey(PlayList, on_delete=models.CASCADE, related_name='item_relacionado', limit_choices_to=pr_opcion_limite)
+	order = models.IntegerField(default=1)
+	timestamp = models.DateTimeField(auto_now_add=True)
 
 class PeliculaProxyManager(PlayListaManager):
 	def all(self):
@@ -128,6 +139,14 @@ class PeliculaProxyManager(PlayListaManager):
 class MovieProxy(PlayList):
 
 	objects = PeliculaProxyManager()
+
+	def get_video_id(self):
+		if self.video is None:
+			return None
+		return self.video.get_video_id()
+
+	def get_clips(self):
+		return self.playlistitem_set.all().publicado()
 
 	class Meta:
 		verbose_name= 'Pelicula'
