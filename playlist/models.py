@@ -43,8 +43,9 @@ class PlayList(models.Model):
 		PLAYLIST = "PLY", "PlayList"
 
 	padre = models.ForeignKey("self", blank=True, null=True, on_delete=models.SET_NULL)
-	order = models.IntegerField(default=1)	
+	relacionados = models.ManyToManyField("self", blank=True, related_name="relacion", through='PlayListRelacionado')
 
+	order = models.IntegerField(default=1)	
 	titulo = models.CharField(max_length=120)
 
 	type = models.CharField(max_length=3, choices=PlaylistTypeChoices.choices, default=PlaylistTypeChoices.PLAYLIST)
