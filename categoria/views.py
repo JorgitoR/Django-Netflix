@@ -40,4 +40,4 @@ class CategoriaDetailView(PlayListMixin, ListView):
 
 	def get_queryset(self):
 		slug = self.kwargs.get("slug")
-		return PlayList.objects.filter(categoria__slug=slug)
+		return PlayList.objects.filter(categoria__slug=slug).pelicula_o_show()

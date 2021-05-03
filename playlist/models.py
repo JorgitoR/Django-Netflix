@@ -25,6 +25,13 @@ class PlayListaQuerySet(models.QuerySet):
 			tiempo_publicado__lte=ahora
 		)
 
+	def pelicula_o_show(self):
+		return self.filter(
+
+			Q(type=PlayList.PlaylistTypeChoices.MOVIE)|
+			Q(type=PlayList.PlaylistTypeChoices.SHOW)
+		)
+
 class PlayListaManager(models.Manager):
 	def get_queryset(self):
 		return PlayListaQuerySet(self.model, using=self._db)
