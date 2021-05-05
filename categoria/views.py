@@ -1,10 +1,10 @@
 from django.shortcuts import render
 
-from django.views.generics import ListView, DetailView
+from django.views.generic import ListView, DetailView
 
 from .models import categoria
 
-from django.http import Htpp404
+from django.http import Http404
 
 from django.db.models import Count
 
@@ -13,7 +13,7 @@ from playlist.mixins import PlayListMixin
 
 
 class CategoriaListView(ListView):
-	queryset = categoria.objects.all().filter(activo=True).annotate(pl_count=Count('playlist__set')).filter(pl_count__gt=0)
+	queryset = categoria.objects.all().filter(activo=True).annotate(pl_count=Count('playlist')).filter(pl_count__gt=0)
 
 
 class CategoriaDetailView(PlayListMixin, ListView):
@@ -27,11 +27,11 @@ class CategoriaDetailView(PlayListMixin, ListView):
 		try:
 			obj = categoria.objects.get(slug=self.kwargs.get('slug'))
 		except categoria.DoesNotExist:
-			raise Htpp404
+			raise Htpp404cd
 		except categoria.MultipleObjectsReturned:
 			raise Htpp404
 		except:
-			obj None
+			obj =  None
 
 		context['object'] = obj 
 		if obj is not None:

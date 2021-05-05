@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block head_titulo %}
+	
+	Categorias /
+	{{block.super}}
+
+{% endblock %}
+
+
+
+{% block contenido %}
+
+<h1>Categoria</h1>
+
+
+{% for instance in object_list %}
+<div>
+    <h3><a href="{{ instance.get_absolute_url }}"> {{ instance.titulo }}</a></h3>
+</div>
+{% endfor %}
+
+
+{% endblock %}
