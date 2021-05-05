@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block head_titulo %}
+	
+	{% if titulo %}
+		{{titulo}} /
+	{%  endif %}
+	{{block.super}}
+
+{% endblock %}
+
+
+{% block contenido %}
+	
+	{% for instance in object_list %}
+
+		<div>
+			<h3>{{instance.titulo}}</h3>
+			<p>{{instance.descripcion}}</p>
+			{% for item in instance.get_item_relacionado %}
+				{% if item.relacionado.pelicula %}
+					{% include 'playlist/tarjetas/pelicula.html' with movie=item.relacionado %}
+				{% elif item.relacionado.show %}
+					{% include 'playlist/tarjetas/show.html' with show=item.relacionado %}
+				{% else %}
+				{% endif %}
+
+			{% endfor %}
+		</div>
+
+	{% endfor %}
+
+{% endblock %}

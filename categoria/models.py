@@ -18,7 +18,7 @@ class categoria(models.Model):
 
 
 	def get_absolute_url(self):
-		return f"/Categorias/{self.slug}"
+		return f"/{self.slug}"
 
 	def __str__(self):
 		return self.titulo
