@@ -31,3 +31,10 @@ class TaggedItem(models.Model):
     # def get_related_object(self):
     #     Klass = self.content_type.model_class()
     #     return Klass.objects.get(id=self.object_id)
+
+
+def tag_minuscula_pre_save(sender, instance, *args, **kwargs):
+	instance.tag = f"{instance.tag}".lower()
+
+
+pre_save.connect(tag_minuscula_pre_save, sender=TaggedItem)

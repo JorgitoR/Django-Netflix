@@ -32,6 +32,17 @@ class PlayListaQuerySet(models.QuerySet):
 			Q(type=PlayList.PlaylistTypeChoices.SHOW)
 		)
 
+	def buscador(self, query=None):
+		if query is None:
+			return self.none()
+		return self.filter(
+
+			Q()|
+
+
+		)
+
+
 class PlayListaManager(models.Manager):
 	def get_queryset(self):
 		return PlayListaQuerySet(self.model, using=self._db)
