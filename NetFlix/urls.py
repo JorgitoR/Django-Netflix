@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('categoria.urls')),
     path('', include('playlist.urls'))
+    path('', include('tags.urls'))
 ]

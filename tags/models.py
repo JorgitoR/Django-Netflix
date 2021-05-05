@@ -20,6 +20,10 @@ class TaggedItem(models.Model):
 
 	objects = TaggItemManager()
 	
+
+	@property 
+	def slug(self):
+		return self.tag
 	
     # def get_related_object(self):
     #     Klass = self.content_type.model_class()
