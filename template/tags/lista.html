@@ -14,6 +14,15 @@
 
 <h1>Tags</h1>
 
+{% for tag in tags %}
+
+<div>
+	<h3>
+		<a href="/tag/{{tag}}">{{tag|title}}</a>
+	</h3>
+</div>
+
+{% endfor %}
 
 
 {% endblock %}

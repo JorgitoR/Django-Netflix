@@ -27,9 +27,9 @@ class CategoriaDetailView(PlayListMixin, ListView):
 		try:
 			obj = categoria.objects.get(slug=self.kwargs.get('slug'))
 		except categoria.DoesNotExist:
-			raise Htpp404cd
+			raise Http404
 		except categoria.MultipleObjectsReturned:
-			raise Htpp404
+			raise Http404
 		except:
 			obj =  None
 

@@ -21,6 +21,9 @@ class TaggedItem(models.Model):
 	objects = TaggItemManager()
 	
 
+	def __str__(self):
+		return self.tag
+
 	@property 
 	def slug(self):
 		return self.tag
