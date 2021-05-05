@@ -6,6 +6,7 @@ from .models import TaggedItem
 
 class TaggedItemListView(View): #it's something like FBV
 	def get(self, request):
+		tags = TaggedItem.objects.all().valuest_list('tag', flat=True)
 		tag_list = TaggedItem.objects.lista_unica()
 		context = {
 
