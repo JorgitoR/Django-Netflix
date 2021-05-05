@@ -4,6 +4,13 @@ from django.db import models
 from django.contrib.contenttypes.models import ContentType 
 from django.contrib.contenttypes.fields import GenericForeignKey 
 
+from django.db.models.signals import pre_save
+
+class TaggItemManager(models.Manager):
+	def lista_unica(self):
+		tags_set = set(self.get_queryset().values_list('tag', flat=True))
+		tags_list = sorted(list(tags_set))
+		return tags_list
 
 class TaggedItem(models.Model):
 	tag = models.SlugField()
@@ -11,6 +18,7 @@ class TaggedItem(models.Model):
 	object_id = models.PositiveIntegerField()
 	content_object = GenericForeignKey("content_type", "object_id")
 
+	objects = TaggItemManager()
 	
 	
     # def get_related_object(self):
