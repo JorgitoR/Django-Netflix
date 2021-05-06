@@ -92,4 +92,12 @@ class PlayListViewTestCase(TestCase):
 		self.assertContains(respuesta, 'Buscando...')
 
 
-	def 
+	def test_buscar_resultados_view(self):
+		query = 'entretenimiento'
+		respuesta = self.client.get(f"/buscar/?q={query}/")
+		p_qs = PlayList.objects.all().buscador(query=query)
+		self.assertEqual(respuesta.status_code, 200)
+		context = respuesta.context
+		r_qs = context['object_list']
+		self.assertQuerysetEqual(p_qs.order_by('-timestamp'), r_qs.order_by('-timestamp'))
+		self.assertContains(respuesta, f"Buscar por {query}")
