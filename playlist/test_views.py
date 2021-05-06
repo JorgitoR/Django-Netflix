@@ -25,7 +25,7 @@ class PlayListViewTestCase(TestCase):
 
 	def test_pelicula_count(self):
 		qs = MovieProxy.objects.all()
-		self.assertEqual(qs.count(), 0)
+		self.assertEqual(qs.count(), 1)
 
 	def test_show_count(self):
 		qs = TVShowProxy.objects.all()
@@ -65,9 +65,31 @@ class PlayListViewTestCase(TestCase):
 		obj = context['object']
 		self.assertEqual(obj.id, movie.id)
 
-	def test_movie_detail_view(self):
+	def test_movie_detail_redirect_view(self):
 		movie = MovieProxy.objects.all().publicado().first()
 		url = f"/movies/{movie.slug}"
 		self.assertIsNotNone(url)	
 		response = self.client.get(url, follow=True) #Get Request some url
 		self.assertEqual(response.status_code, 200) #200
+	
+	def test_movie_list_view(self):
+		pelicula_qs = MovieProxy.objects.all().publicado()
+		respuesta = self.client.get('/movie/')
+		self.assertEqual(respuesta.status_code, 200)
+		context = respuesta.context
+		r_qs = context['object_list']
+		self.assertQuerysetEqual(pelicula_qs.order_by('-timestamp'), r_qs.order_by('-timestamp'))
+
+
+	def test_buscador_none_view(self):
+		query = None
+		respuesta = self.client.get('/buscar/')
+		qs = PlayList.objects.none()
+		self.assertEqual(respuesta.status_code, 200)
+		context = respuesta.context
+		r_qs = context['object_list']
+		self.assertQuerysetEqual(qs.order_by('-timestamp'), r_qs.order_by('-timestamp'))
+		self.assertContains(respuesta, 'Buscando...')
+
+
+	def 

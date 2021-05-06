@@ -2,7 +2,13 @@
 	{
 		"model": "categoria.categoria", 
 		"pk": 1, 
-		"fields": {"titulo": "Entretenimiento", "slug": "entretenimiento", "activo": true, "timestamp": "2021-05-05T19:23:06.367Z", "update": "2021-05-05T19:23:06.367Z"}
+		"fields": {
+				"titulo": "Entretenimiento", 
+				"slug": "entretenimiento", 
+				"activo": true, 
+				"timestamp": "2021-05-05T19:23:06.367Z", 
+				"update": "2021-05-05T19:23:06.367Z"
+			}
 
 	}, 
 
@@ -22,14 +28,41 @@
 			"timestamp": "2021-05-05T19:23:55.196Z", 
 			"update": "2021-05-05T19:23:55.196Z", 
 			"stado": "PU", 
-			"tiempo_publicado": "2021-05-05T19:23:55.194Z"}
+			"tiempo_publicado": "2021-05-05T19:23:55.194Z"
+		}
+
+	}, 
+
+	{
+		"model": "playlist.playlist", 
+		"pk": 2, 
+		"fields": {
+			"padre": null, 
+			"order": 1, 
+			"titulo": "El imperio de Mark", 
+			"type": "MOV", 
+			"categoria": 1, 
+			"descripcion": "", 
+			"slug": "el-imperio-de-mark", 
+			"activo": true, 
+			"video": null, 
+			"timestamp": "2021-05-06T11:25:30.912Z", 
+			"update": "2021-05-06T11:25:30.912Z", 
+			"stado": "PU", 
+			"tiempo_publicado": "2021-05-06T11:25:30.908Z"
+		}
 
 	}, 
 
 	{
 		"model": "tags.taggeditem", 
 		"pk": 1, 
-		"fields": {"tag": "series", "content_type": 14, "object_id": 1}
+		"fields": {
+			"tag": "series", 
+			"content_type": 14, 
+			"object_id": 1
+		}
+
 	}
 
-]
+	]

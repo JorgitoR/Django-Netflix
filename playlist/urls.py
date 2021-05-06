@@ -17,7 +17,7 @@ from .views import (
 urlpatterns = [
 
 	path('', PlayListDestacadoView.as_view(), name='PlayListDestacadoView'),
-	path('movie', PeliculaListaView.as_view(), name='PeliculaListaView'),
+	path('movie/', PeliculaListaView.as_view(), name='PeliculaListaView'),
 	path('show/', TVSHOWListView.as_view(), name='TVSHOWListView'),
 
 
