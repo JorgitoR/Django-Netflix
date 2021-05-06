@@ -1,0 +1,35 @@
+[
+	{
+		"model": "categoria.categoria", 
+		"pk": 1, 
+		"fields": {"titulo": "Entretenimiento", "slug": "entretenimiento", "activo": true, "timestamp": "2021-05-05T19:23:06.367Z", "update": "2021-05-05T19:23:06.367Z"}
+
+	}, 
+
+	{
+		"model": "playlist.playlist", 
+		"pk": 1, 
+		"fields": {
+			"padre": null, 
+			"order": 1, 
+			"titulo": "Abstract The art of the design", 
+			"type": "TVS", 
+			"categoria": null, 
+			"descripcion": "", 
+			"slug": "abstract-the-art-of-the-design", 
+			"activo": true, 
+			"video": null, 
+			"timestamp": "2021-05-05T19:23:55.196Z", 
+			"update": "2021-05-05T19:23:55.196Z", 
+			"stado": "PU", 
+			"tiempo_publicado": "2021-05-05T19:23:55.194Z"}
+
+	}, 
+
+	{
+		"model": "tags.taggeditem", 
+		"pk": 1, 
+		"fields": {"tag": "series", "content_type": 14, "object_id": 1}
+	}
+
+]

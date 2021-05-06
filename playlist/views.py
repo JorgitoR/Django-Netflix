@@ -12,6 +12,23 @@ from django.http import Http404
 
 from NetFlix.db.models import PublishStateOptions
 
+
+class BuscarView(PlayListMixin, ListView):
+
+	def get_context_data(self):
+		context = super().get_context_data()
+		query = self.request.GET.get("q")
+		if query is not None:
+			context['titulo'] = f"Buscar por {query}"
+		else:
+			context["titulo"] = "Buscando..."
+
+		return context
+
+	def get_queryset(self):
+		query = self.request.GET.get("q") #request.GET = {}
+		return PlayList.objects.all().pelicula_o_show().buscador(query=query)
+
 class PeliculaListaView(PlayListMixin, ListView):
 	queryset = MovieProxy.objects.all()
 	titulo ="Peliculas"

@@ -10,9 +10,9 @@ class PlaylistModelTestCase(TestCase):
 
 	def crear_show_con_temporada(self):
 		la_oficina = PlayList.objects.create(titulo='Serie la oficina')
-		temporada_1 = PlayList.objects.create(titulo='La oficina temporada 1', padre=la_oficina, order=1)
-		temporada_2 = PlayList.objects.create(titulo='la oficina temporada 2', padre=la_oficina, order=2)
-		temporada_3 = PlayList.objects.create(titulo='la oficina temporada 3', padre=la_oficina, order=3)
+		self.temporada_1 = PlayList.objects.create(titulo='La oficina temporada 1', padre=la_oficina, order=1)
+		self.temporada_2 = PlayList.objects.create(titulo='la oficina temporada 2', padre=la_oficina, order=2)
+		self.temporada_3 = PlayList.objects.create(titulo='la oficina temporada 3', padre=la_oficina, order=3)
 		self.show = la_oficina
 
 	def crear_video(self):

@@ -9,7 +9,9 @@ from .views import (
 	PeliculaDetailView,
 	PlaylistDetailView,
 	TVShowDetailView,
-	TVShowTemporadaDetailView
+	TVShowTemporadaDetailView,
+
+	BuscarView
 )
 
 urlpatterns = [
@@ -18,6 +20,8 @@ urlpatterns = [
 	path('movie', PeliculaListaView.as_view(), name='PeliculaListaView'),
 	path('show/', TVSHOWListView.as_view(), name='TVSHOWListView'),
 
+
+	path('buscar/', BuscarView.as_view()),
 
 	path('pelicula/<slug:slug>/', PeliculaDetailView.as_view(), name='PeliculaDetailView'),
 	

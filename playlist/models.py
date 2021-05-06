@@ -37,10 +37,13 @@ class PlayListaQuerySet(models.QuerySet):
 			return self.none()
 		return self.filter(
 
-			Q()|
+			Q(titulo__icontains=query)|
+			Q(descripcion__icontains=query)|
+			Q(categoria__titulo__icontains=query)|
+			Q(categoria__slug__icontains=query)|
+			Q(tags__tag__icontains=query)
 
-
-		)
+		).distinct()
 
 
 class PlayListaManager(models.Manager):
