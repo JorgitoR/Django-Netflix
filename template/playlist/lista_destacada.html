@@ -19,8 +19,18 @@
 			<p>{{instance.descripcion}}</p>
 			{% for item in instance.get_item_relacionado %}
 				{% if item.relacionado.pelicula %}
-					{% include 'playlist/tarjetas/pelicula.html' with movie=item.relacionado %}
+					<div>
+						<p>
+							<strong>Peliculas Relacionadas</strong>
+						</p>
+					</div>
+					{% include 'playlist/tarjetas/pelicula.html' with pelicula=item.relacionado %}
 				{% elif item.relacionado.show %}
+					<div>
+						<p>
+							<strong>Shows Relacionadas</strong>
+						</p>
+					</div>
 					{% include 'playlist/tarjetas/show.html' with show=item.relacionado %}
 				{% else %}
 				{% endif %}

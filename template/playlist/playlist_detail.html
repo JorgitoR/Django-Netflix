@@ -14,6 +14,13 @@
 	{{object.titulo}}
 </h1>
 
+<p style="background: #fafafa; padding: 7px;">
+	{{object.descripcion}}
+</p>
+
 {{object.slug}} {{object.get_corto_display}}
+
+
+{% include 'video/embed.html' with video_id=object.video.get_video_id %}
 
 {% endblock %}

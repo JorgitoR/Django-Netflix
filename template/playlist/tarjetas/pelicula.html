@@ -1,0 +1,7 @@
+{% load clasificacion %}
+<div>
+	<a href="{{pelicula.get_absolute_url}}">
+		{{pelicula}}
+		{% clasificar object=pelicula  solo_clasificacion=True %}
+	</a>
+</div>

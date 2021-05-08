@@ -20,12 +20,12 @@ class ClasificacionChoices(models.IntegerChoices):
 
 class ClasificacionQuerySet(models.QuerySet):
 	def rating(self):
-		return self.aggregate(average=vg("valor"))['average']
+		return self.aggregate(average=Avg("valor"))['average']
 
 
 class ClasificacionManager(models.Manager):
 	def get_queryset(self):
-		return ClasificacionQuerySet(self.model, using=self.__db)
+		return ClasificacionQuerySet(self.model, using=self._db)
 
 class Clasificacion(models.Model):
 	usuario = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -35,5 +35,5 @@ class Clasificacion(models.Model):
 	content_object = GenericForeignKey("content_type", "object_id")
 
 
-
+	objects = ClasificacionManager()
 

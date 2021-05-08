@@ -38,7 +38,9 @@
 
 
 {{season.slug}}
-<li>{{ forloop.counter }} - <a href=''>{{ season.titulo }} </a></li>
+
+
+<li>{{ forloop.counter }} - <a href='{{season.get_absolute_url}}'>{{ season.titulo }} </a></li>
 
 
 {% endfor %}

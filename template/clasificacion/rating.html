@@ -1,0 +1,13 @@
+<p>
+	Clasificacion:{% if value %} {{value}} {% else %}¡¡ {% endif %}
+</p>
+
+{% if form %}
+	<form method="POST" action='/object-rate/'>
+		{% csrf_token %}
+		{{form.as_p}}
+		<button type="submit">
+			Enviar
+		</button>
+	</form>
+{% endif %}

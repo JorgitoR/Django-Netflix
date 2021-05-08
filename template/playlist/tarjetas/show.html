@@ -1,0 +1,7 @@
+{% load clasificacion %}
+<div>
+	<a href="{{show.get_absolute_url}}">
+		{{show}}
+		{% clasificar object=show  solo_clasificacion=True %}
+	</a>
+</div>

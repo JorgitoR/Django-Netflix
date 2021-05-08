@@ -105,13 +105,13 @@ class PlayList(models.Model):
 
 	def get_absolute_url(self):
 		if self.pelicula:
-			return f"/peliculas/{self.slug}/"
+			return f"/pelicula/{self.slug}/"
 
 		if self.show:
 			return f"/shows/{self.slug}/"
 
 		if self.temporada and self.padre is not None:
-			return f"/shows{self.padre.slug}/temporada/{self.slug}/"
+			return f"/shows/{self.padre.slug}/seasons/{self.slug}/"
 
 		return f"/playlist/{self.slug}"
 
