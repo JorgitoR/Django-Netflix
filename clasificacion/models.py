@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.db.models import Avg
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save, post_save
 
 from django.db import models
 
@@ -36,4 +36,8 @@ class Clasificacion(models.Model):
 
 
 	objects = ClasificacionManager()
+
+
+def clasificacion_post_save(sender, instance, *args, **kwargs):
+	if created:
 
