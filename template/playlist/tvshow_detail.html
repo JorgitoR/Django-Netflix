@@ -24,6 +24,18 @@
 </p>
 
 
+{% load clasificacion %}
+
+<div>
+	<p>
+		
+		{% clasificar object=object %}
+
+
+	</p>	
+
+</div>
+
 <h3>Triler</h3>
 <p style="width: 50%; font-family: arial;">
 	{{object.video.get_descripcion_trailer}}	

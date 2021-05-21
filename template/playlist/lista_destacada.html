@@ -24,7 +24,8 @@
 							<strong>Peliculas Relacionadas</strong>
 						</p>
 					</div>
-					{% include 'playlist/tarjetas/pelicula.html' with pelicula=item.relacionado %}
+			{% include 'playlist/tarjetas/pelicula.html' with pelicula=item.relacionado %}
+				
 				{% elif item.relacionado.show %}
 					<div>
 						<p>
