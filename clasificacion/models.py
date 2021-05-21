@@ -38,7 +38,7 @@ class Clasificacion(models.Model):
 	objects = ClasificacionManager()
 
 
-def clasificacion_post_save(sender, instance, *args, **kwargs):
+def clasificacion_post_save(sender, instance, created, *args, **kwargs):
 	if created:
 		content_type = instance.content_type
 		usuario = instance.usuario
