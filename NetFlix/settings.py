@@ -128,7 +128,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     
     #No sera nuestro servidor, sera nuestro almacenamiento a largo 
-    os.path.join(BASE_DIR, "static-storage")
+    os.path.join(BASE_DIR, "static")
 
 ]
 

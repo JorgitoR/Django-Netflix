@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,6 +6,8 @@
 	<title>
 		{% block head_titulo %} NetFlix {% endblock %}
 	</title>
+
+	<link rel="stylesheet" type="text/css" href="{% static '' %}">
 </head>
 <body>
 
@@ -13,6 +16,8 @@
 		<input type="text" name="q" placeholder="Buscar una pelicula o show">
 		<button type="submit">Buscar</button>
 	</form>
+
+	{% include 'body/nav.html' %}
 
 	{% block contenido %}
 
