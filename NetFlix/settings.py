@@ -124,3 +124,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    
+    #No sera nuestro servidor, sera nuestro almacenamiento a largo 
+    os.path.join(BASE_DIR, "static-storage")
+
+]
+
+
+#sera nuestro servidor
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static-serve")
