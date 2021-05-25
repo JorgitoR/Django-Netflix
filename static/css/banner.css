@@ -1,0 +1,22 @@
+.banner{
+	color: white;
+	object-fit: contain;
+	height: 448px;
+}
+
+.contenedor_banner{
+	margin-left: 30px;
+	padding-top: 140px;
+	height: 190px;
+}
+
+.titulo_baner{
+	font-size: 3rem;
+	font-weight: 800;
+	padding-bottom: 0.3rem;
+
+}
+
+.descripcion{
+
+}
